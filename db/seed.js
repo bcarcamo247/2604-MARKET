@@ -24,5 +24,5 @@ async function seed() {
     await createOrderProduct(order.id, j, 3);
       
   }
-} 
+}
 
