@@ -1,5 +1,7 @@
 import db from "#db/client";
-
+/*Creating orders, connect user to the orders
+and also storing the date of the order. Finally
+return the order that we created*/ 
 export async function createOrder(date, user_id) {
     const sql = `
     INSERT INTO ORDERS
@@ -10,7 +12,8 @@ export async function createOrder(date, user_id) {
     const { rows: [order], } = await db.query(sql, [date, user_id]);
     return order;
 }
-
+/*Function that allows database to receive all the orders
+and returns them*/
 export async function getOrders() {
     const sql = `
     SELECT *
@@ -19,7 +22,8 @@ export async function getOrders() {
     const { rows: orders } = await db.query(sql);
     return orders;
 }
-
+/*Match an order with an id find order with that id
+The order that matches is returned */
 export async function getOrderById(id) {
     const sql = `
     SELECT * 
@@ -29,7 +33,9 @@ export async function getOrderById(id) {
     const { rows: [order], } = await db.query(sql, [id]);
     return order;
 }
-
+/*Order and orders_products tables being joined
+finds an order that has a certain product
+return the orders that match */
 export async function getOrdersByProductId(productId) {
     const sql = `
     SELECT orders.*
@@ -40,7 +46,9 @@ export async function getOrdersByProductId(productId) {
     const { rows: orders } = await db.query(sql, [productId]);
     return orders;
 }
-
+/*Filter the orders by the user's id 
+find the orders that  belong to the user
+return the orders that match */
 export async function getOrdersByUserId(userId) {
     const sql = `
     SELECT *
