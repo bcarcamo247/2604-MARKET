@@ -46,8 +46,7 @@ export async function getOrdersByProductId(productId) {
     const { rows: orders } = await db.query(sql, [productId]);
     return orders;
 }
-/*Filter the orders by the user's id 
-find the orders that  belong to the user
+/*Find the orders that  belong to the user
 return the orders that match */
 export async function getOrdersByUserId(userId) {
     const sql = `
