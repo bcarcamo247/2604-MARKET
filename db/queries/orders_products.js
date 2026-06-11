@@ -1,5 +1,8 @@
 import db from "#db/client";
-
+/*Making an association between product and order
+three parameters are stored in the function
+values line as placeholders for each parameter
+return the order-product thats been created */
 export async function createOrderProduct(orderId, productId, quantity) {
     const sql = `
     INSERT INTO orders_products
