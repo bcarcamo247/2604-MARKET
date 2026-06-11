@@ -1,6 +1,8 @@
 import bcrypt from "bcrypt";
 import db from "#db/client";
-
+/* create a user store the username and pw
+password is hashed to make it more secure
+return created user */
 export async function createUser(username, password) {
     const sql = `
     INSERT INTO users (username, password)
@@ -11,7 +13,12 @@ export async function createUser(username, password) {
     const { rows: [user], } = await db.query(sql, [username, hashedPassword]);
     return user;
 }
-
+/* The USER contains a specific username that allows us
+to find the user by the username if there is no user with
+that username then return nothing, the password given is 
+compared with the real password if the correct password is not 
+provided, return nothing, lastly return the USER
+*/
 export async function getUserByUsernameAndPassword(username, password) {
     const sql = `
     SELECT *
@@ -24,7 +31,8 @@ export async function getUserByUsernameAndPassword(username, password) {
     if (!isValid) return null;
     return user;
 }
-
+/*Find the user by their id and if found
+return the user that matches */
 export async function getUserById(id) {
     const sql = `
     SELECT *
